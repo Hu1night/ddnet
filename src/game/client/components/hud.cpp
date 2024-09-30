@@ -587,9 +587,6 @@ void CHud::RenderTeambalanceWarning()
 
 void CHud::RenderCursor()
 {
-	if(!m_pClient->m_Snap.m_pLocalCharacter || Client()->State() == IClient::STATE_DEMOPLAYBACK)
-		return;
-
 	RenderTools()->MapScreenToInterface(m_pClient->m_Camera.m_Center.x, m_pClient->m_Camera.m_Center.y);
 
 	// render cursor
