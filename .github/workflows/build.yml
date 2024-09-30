@@ -101,8 +101,8 @@ jobs:
       run: |
         cd release
         mkdir artifacts
-        mv ${{ matrix.client-files }} artifacts
-        mv ${{ matrix.server-files }} artifacts
+        mv ${{ matrix.client-file }} artifacts
+        mv ${{ matrix.server-file }} artifacts
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
