@@ -232,7 +232,7 @@ private:
 
 	static void ConchainMenuMap(IConsole::IResult *pResult, void *pUserData, IConsole::FCommandCallback pfnCallback, void *pCallbackUserData);
 
-	static void ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData, IConsole::FCommandCallback pfnCallback, void *pCallbackUserData);
+	static void ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData);
 
 	// only used in OnPredict
 	vec2 m_aLastPos[MAX_CLIENTS];

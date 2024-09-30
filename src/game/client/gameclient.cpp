@@ -3855,15 +3855,12 @@ void CGameClient::ConchainMenuMap(IConsole::IResult *pResult, void *pUserData, I
 		pfnCallback(pResult, pCallbackUserData);
 }
 
-void CGameClient::ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData, IConsole::FCommandCallback pfnCallback, void *pCallbackUserData)
+void CGameClient::ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData)
 {
-	CGameClient *pSelf = (CGameClient *)pUserData;
 	if(pResult->NumArguments())
 	{
-		pSelf->m_DeclaredDDNetVersion = pResult->GetInteger(0);
+		((CGameClient *)pUserData)->m_DeclaredDDNetVersion = pResult->GetInteger(0);
 	}
-	else
-		pfnCallback(pResult, pCallbackUserData);
 }
 
 void CGameClient::DummyResetInput()
