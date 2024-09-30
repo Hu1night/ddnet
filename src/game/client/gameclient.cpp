@@ -83,7 +83,7 @@ using namespace std::chrono_literals;
 const char *CGameClient::Version() const { return GAME_VERSION; }
 const char *CGameClient::NetVersion() const { return GAME_NETVERSION; }
 const char *CGameClient::NetVersion7() const { return GAME_NETVERSION7; }
-int CGameClient::DDNetVersion() const { return m_DeclaredDDNetVersion; }
+int CGameClient::DDNetVersion() const { return m_pConfig->m_ClDeclaredDDNetVersion; }
 const char *CGameClient::DDNetVersionStr() const { return m_aDDNetVersionStr; }
 int CGameClient::ClientVersion7() const { return CLIENT_VERSION7; }
 const char *CGameClient::GetItemName(int Type) const { return m_NetObjHandler.GetObjName(Type); }
@@ -249,10 +249,6 @@ void CGameClient::OnConsoleInit()
 	Console()->Chain("cl_text_entities_size", ConchainClTextEntitiesSize, this);
 
 	Console()->Chain("cl_menu_map", ConchainMenuMap, this);
-
-	m_DeclaredDDNetVersion = DDNET_VERSION_NUMBER;
-
-	Console()->Chain("cl_set_ddnet_version", ConSetDDNetVersion, this);
 }
 
 static void GenerateTimeoutCode(char *pTimeoutCode)
@@ -3850,17 +3846,6 @@ void CGameClient::ConchainMenuMap(IConsole::IResult *pResult, void *pUserData, I
 			str_copy(g_Config.m_ClMenuMap, pResult->GetString(0));
 			pSelf->m_MenuBackground.LoadMenuBackground();
 		}
-	}
-	else
-		pfnCallback(pResult, pCallbackUserData);
-}
-
-void CGameClient::ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData, IConsole::FCommandCallback pfnCallback, void *pCallbackUserData)
-{
-	CGameClient *pSelf = (CGameClient *)pUserData;
-	if(pResult->NumArguments())
-	{
-		pSelf->m_DeclaredDDNetVersion = pResult->GetInteger(0);
 	}
 	else
 		pfnCallback(pResult, pCallbackUserData);

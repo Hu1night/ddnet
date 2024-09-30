@@ -15,29 +15,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest, ubuntu-20.04]
+        os: [ubuntu-latest, windows-latest]
         include:
         - os: ubuntu-latest
           cmake-args: -G Ninja
           cmake-init-env: CXXFLAGS=-Werror
-          package-file: "*-linux_x86_64.tar.xz"
+          client-file: "DDNet"
+          server-file: "DDNet-Server"
           fancy: true
-        - os: ubuntu-20.04
-          cmake-path: /usr/bin/
-          cmake-args: -G Ninja -DTEST_MYSQL=ON
-          cmake-init-env: CXXFLAGS=-Werror
-          gtest-env: GTEST_FILTER=-*SQLite*
-          package-file: "*-linux_x86_64.tar.xz"
-          fancy: false
-        - os: macOS-latest
-          cmake-args: -G Ninja
-          cmake-init-env: CXXFLAGS=-Werror
-          package-file: "*-macos.dmg"
-          fancy: false
         - os: windows-latest
           cmake-args: -A x64
           cmake-init-env: CXXFLAGS=/WX LDFLAGS=/WX
-          package-file: "*-win64.zip"
+          client-file: "DDNet.exe"
+          server-file: "DDNet-Server.exe"
           fancy: false
 
     steps:
@@ -100,20 +90,19 @@ jobs:
     - name: Cache Rust dependencies
       uses: Swatinem/rust-cache@v2
 
-    - name: Build in release mode with debug info and all features on
-      if: matrix.fancy
+    - name: Build in release mode
       run: |
-        mkdir fancy
-        cd fancy
-        ${{ matrix.cmake-path }}cmake -E env ${{ matrix.cmake-init-env }} ${{ matrix.cmake-path }}cmake ${{ matrix.cmake-args }} -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDOWNLOAD_GTEST=ON -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. -DANTIBOT=ON -DWEBSOCKETS=ON ..
-        ${{ matrix.cmake-path }}cmake --build . --config RelWithDebInfo --target everything ${{ matrix.build-args }}
+        mkdir release
+        cd release
+        ${{ matrix.cmake-path }}cmake -E env ${{ matrix.cmake-init-env }} ${{ matrix.cmake-path }}cmake ${{ matrix.cmake-args }} -DCMAKE_BUILD_TYPE=Release -Werror=dev -DDOWNLOAD_GTEST=ON -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
+        ${{ matrix.cmake-path }}cmake --build . --config Release --target everything ${{ matrix.build-args }}
 
     - name: Package
       run: |
         cd release
-        ${{ matrix.cmake-path }}cmake --build . --config Release --target package_default ${{ matrix.build-args }}
         mkdir artifacts
-        mv ${{ matrix.package-file }} artifacts
+        mv ${{ matrix.client-files }} artifacts
+        mv ${{ matrix.server-files }} artifacts
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4

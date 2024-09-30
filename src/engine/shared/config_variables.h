@@ -564,6 +564,8 @@ MACRO_CONFIG_INT(SvRejoinTeam0, sv_rejoin_team_0, 1, 0, 1, CFGFLAG_SERVER, "Make
 
 MACRO_CONFIG_INT(SvNoWeakHook, sv_no_weak_hook, 0, 0, 1, CFGFLAG_SERVER | CFGFLAG_GAME, "Whether to use an alternative calculation for world ticks, that makes the hook behave like all players have strong.")
 
+MACRO_CONFIG_INT(ClDeclaredDDNetVersion, cl_ddnet_ver_number, 18051, 0, 999999999, CFGFLAG_CLIENT | CFGFLAG_SAVE, "设置你的DDNet版本")
+
 MACRO_CONFIG_INT(ClReconnectTimeout, cl_reconnect_timeout, 120, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How many seconds to wait before reconnecting (after timeout, 0 for off)")
 MACRO_CONFIG_INT(ClReconnectFull, cl_reconnect_full, 5, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How many seconds to wait before reconnecting (when server is full, 0 for off)")
 
