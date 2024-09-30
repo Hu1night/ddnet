@@ -252,7 +252,7 @@ void CGameClient::OnConsoleInit()
 
 	m_DeclaredDDNetVersion = DDNET_VERSION_NUMBER;
 
-	Console()->Register("cl_set_ddnet_version", "", CFGFLAG_CLIENT, ConSetDDNetVersion, this, "Set your DDNet version number");
+	Console()->Chain("cl_set_ddnet_version", ConSetDDNetVersion, this);
 }
 
 static void GenerateTimeoutCode(char *pTimeoutCode)
@@ -3855,12 +3855,15 @@ void CGameClient::ConchainMenuMap(IConsole::IResult *pResult, void *pUserData, I
 		pfnCallback(pResult, pCallbackUserData);
 }
 
-void CGameClient::ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData)
+void CGameClient::ConSetDDNetVersion(IConsole::IResult *pResult, void *pUserData, IConsole::FCommandCallback pfnCallback, void *pCallbackUserData)
 {
+	CGameClient *pSelf = (CGameClient *)pUserData;
 	if(pResult->NumArguments())
 	{
-		((CGameClient *)pUserData)->m_DeclaredDDNetVersion = pResult->GetInteger(0);
+		pSelf->m_DeclaredDDNetVersion = pResult->GetInteger(0);
 	}
+	else
+		pfnCallback(pResult, pCallbackUserData);
 }
 
 void CGameClient::DummyResetInput()
