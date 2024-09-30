@@ -34,6 +34,8 @@
 # Rafael Fontenelle   2024-04-30 14:52:00
 # Rafael Fontenelle   2024-06-11 22:43:00
 # Rafael Fontenelle   2024-07-17 12:04:00
+# Rafael Fontenelle   2024-09-02 16:02:00
+# Rafael Fontenelle   2024-09-30 07:53:00
 ##### /authors #####
 
 ##### translated strings #####
@@ -310,9 +312,6 @@ Player
 
 Player country:
 == País do jogador:
-
-Player options
-== Opções do jogador
 
 Players
 == Jogadores
@@ -817,9 +816,6 @@ Show DDNet map finishes in server browser
 
 transmits your player name to info.ddnet.org
 == transmite seu nome de jogador para info.ddnet.org
-
-Reload
-== Recarregar
 
 Time
 == Tempo
@@ -1376,9 +1372,6 @@ Show health, shields and ammo
 DDRace HUD
 == HUD do DDRace
 
-Show client IDs in scoreboard
-== Mostrar IDs de cliente no placar
-
 Show DDRace HUD
 == Mostrar HUD do DDRace
 
@@ -1901,3 +1894,79 @@ Team %d (%d/%d)
 
 https://wiki.ddnet.org/wiki/Mapping
 == https://wiki.ddnet.org/wiki/Mapping
+
+Could not resolve connect address '%s'. See local console for details.
+== Não foi possível resolver o endereço de conexão '%s'. Veja o console local para detalhes.
+
+Connect address error
+== Erro no endereço de conexão
+
+Could not connect dummy
+== Não foi possível conectar o dummy
+
+Dummy is not allowed on this server
+== Dummy não é permitido neste servidor
+
+Please wait…
+== Por favor, aguarde…
+
+Show client IDs (scoreboard, chat, spectator)
+== Mostrar IDs de clientes (placar, chat, observador)
+
+Are you sure that you want to delete '%s'?
+== Tem certeza que deseja excluir '%s'?
+
+Delete skin
+== Excluir skin
+
+Basic
+== Básico
+
+Custom
+== Personalizado
+
+Unable to delete skin
+== Não foi possível excluir skin
+
+Save skin
+== Salvar skin
+
+Are you sure you want to save your skin? If a skin with this name already exists, it will be replaced.
+== Tem certeza de que deseja salvar sua skin? Se uma skin com esse nome já existir, ela será substituída.
+
+Unable to save the skin
+== Não foi possível salvar a skin
+
+Unable to save the skin with a reserved name
+== Não foi possível salvar a skin com um nome reservado
+
+No local servers found (ports %d-%d)
+== Nenhum servidor local encontrado (portas %d-%d)
+
+[Hertz]
+Hz
+== Hz
+
+[skins]
+Body
+== Corpo
+
+[skins]
+Marking
+== Marca
+
+[skins]
+Decoration
+== Decoração
+
+[skins]
+Hands
+== Mãos
+
+[skins]
+Feet
+== Pés
+
+[skins]
+Eyes
+== Olhos
